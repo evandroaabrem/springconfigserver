@@ -1,0 +1,25 @@
+
+
+
+- as configurações estão no github
+
+      https://github.com/evandroaabrem/springconfig/tree/main
+
+      # cliente-service.yml
+      app:
+        message: "Configuração vinda do Config Server"
+
+      cliente:
+        nome: "Cliente Servico"
+        descricao: "Servico responsavel por gerenciar clientes"
+        versao: "1.0.0"
+
+      contato:
+        nome: "Suporte Cliente Servico"
+
+
+
+Para aceasar as configurações do config server, o cliente-service deve estar no github acima exemplo:
+
+
+http://localhost:8888/cliente-service-prd/default
