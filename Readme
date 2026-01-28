@@ -1,0 +1,50 @@
+Na Aws,
+
+foi criado uma chave de acesso ao banco de dados :
+
+
+Passo 1 :
+ - lp-dev
+     spring.datasource.url      jdbc:postgresql://localhost:5432/saga_db
+     spring.datasource.username      saga_user
+     spring.datasource.password    saga_pass
+
+Passo 2 : Acesso a essa chave
+   IAM - USERS - spring-local-user
+        Add Permissions
+            Create inline policy
+                JSON
+                    {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "secretsmanager:GetSecretValue",
+                            "secretsmanager:DescribeSecret"
+                          ],
+                          "Resource": "arn:aws:secretsmanager:us-east-2:131677315212:secret:lp-dev*"
+                        }
+                      ]
+                    }
+
+Passo 3 : Executar o comando :
+
+aws secretsmanager get-secret-value --secret-id lp-dev --region us-east-2
+
+Resposta :
+
+{
+    "ARN": "arn:aws:secretsmanager:us-east-2:131677315212:secret:lp-dev-RGUWxr",
+    "Name": "lp-dev",
+    "VersionId": "92de0460-3391-4419-98df-23d7df1f6711",
+    "SecretString": "{\"spring.datasource.url\":\"jdbc:postgresql://localhost:5432/saga_db\",\"spring.datasource.username\":\"saga_user\",\"spring.datasource.password\":\"saga_pass\"}",
+    "VersionStages": [
+        "AWSCURRENT"
+    ],
+    "CreatedDate": "2026-01-28T10:16:46.262000-03:00"
+}
+
+
+
+

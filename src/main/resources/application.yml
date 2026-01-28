@@ -5,6 +5,11 @@ spring:
   application:
     name: config-server
   cloud:
+    aws:
+      region:
+        static: us-east-2
+      secretsmanager:
+        enabled: true
     config:
       server:
         git:
